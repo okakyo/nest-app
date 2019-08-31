@@ -44,22 +44,17 @@
     "tslint": "5.16.0",
     "typescript": "3.4.3"
   },
-  "huskey": {
+  "husky": {
     "hooks": {
         "pre-commit": "lint-staged"
     }
   },
   "lint-staged": {
-    "linters": {
+
       "*.{ts,vue}": [
-        "typescript",
         "tslint --fix",
         "git add"
       ]
-    },
-    "ignore": [
-      "dist/**/*"
-    ]
   },
   "jest": {
     "moduleFileExtensions": [
