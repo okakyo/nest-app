@@ -53,7 +53,8 @@
     "linters": {
       "*.{ts,vue}": [
         "typescript",
-        "tslint"
+        "tslint --fix",
+        "git add"
       ]
     },
     "ignore": [
