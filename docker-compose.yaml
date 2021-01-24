@@ -1,0 +1,27 @@
+version: "3.7"
+services: 
+  api:
+    container_name: "nest-app-api"
+    restart: always
+    build: "./"
+    environment:
+      MYSQL_PASSWORD: ""
+      MYSQL_USERNAME: ""
+      MYSQL_ROOT_PASSWORD: ""
+    command: []
+    volumes:
+      - "/src:/user/src"
+  db: 
+    restart: always
+    container_name: "nest-app-db"
+    image: "mariadb:latest"
+    environment:
+      MYSQL_PASSWORD: ""
+      MYSQL_USERNAME: ""
+      MYSQL_ROOT_PASSWORD: ""
+    volumes:
+      - 
+  nginx:
+    restart: always
+    container_name: "nest-app-nginx"
+    image: "nginx:latest"
