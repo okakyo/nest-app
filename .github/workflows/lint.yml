@@ -1,7 +1,7 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: Node.js CI
+name: Lint and Test Action
 
 on:
   push:
@@ -21,7 +21,11 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm run lint
-    - run: npm test
+    - name: 環境を構築
+      run: npm ci
+    - name: Linter を実行
+      run: npm run lint
+    - name: ビルド実行
+      run: npm run build --if-present
+    - name: テストを実行
+      run: npm test
