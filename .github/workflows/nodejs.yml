@@ -12,11 +12,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: executing remote ssh commands using password
+    - uses: actions/checkout@v2
+    - name: Check Arguments
+      run: echo ${{secrets.HOST}},${{secrets.NAME}},${{secrets.PORT}},${{secrets.PASSWORD}}
+    - name: Push to server
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
-        username: ${{ secrets.USERNAME }}
-        password: ${{ secrets.PASSWORD }}
+        username: ${{ secrets.NAME }}
+        key: ${{ secrets.KEY }}
         port: ${{ secrets.PORT }}
         script: whoami
