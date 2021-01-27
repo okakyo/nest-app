@@ -27,4 +27,4 @@ jobs:
         username: ${{ secrets.SERVER_USERNAME }}
         port: ${{ secrets.SERVER_PORT }}
         KEY: ${{ secrets.SSH_KEY }}
-        script: whoami
+        script: ls -a
