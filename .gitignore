@@ -35,4 +35,5 @@ lerna-debug.log*
 
 .env.local
 .env
-docker/
+docker/*
+!docker/nginx/
