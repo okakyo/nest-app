@@ -13,13 +13,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Check Arguments
-      run: echo ${{secrets.HOST}},${{secrets.NAME}},${{secrets.PORT}},${{secrets.PASSWORD}}
     - name: Push to server
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
-        username: ${{ secrets.NAME }}
+        username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
         port: ${{ secrets.PORT }}
         script: whoami
