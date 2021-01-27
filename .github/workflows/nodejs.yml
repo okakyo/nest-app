@@ -18,6 +18,6 @@ jobs:
       with:
         host: 118.27.108.156
         username: okakyo
-        password: @1phaBeta
+        password: '@1phaBeta'
         port: 50762
         script: whoami
