@@ -18,7 +18,6 @@ jobs:
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.NAME }}
-        key: ${{ secrets.KEY }}
-        port: ${{ secrets.PORT }}
-        proxy_port: ${{secrets.PORT}}
+        password: ${{ secrets.PASSWORD }}
+        port: 50762
         script: whoami
