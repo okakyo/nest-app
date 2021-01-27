@@ -16,9 +16,8 @@ jobs:
     - name: Push to server
       uses: appleboy/ssh-action@master
       with:
-        host: 118.27.108.156
-        username: okakyo
-        key: ${{ secrets.KEY }}
-        port: 50762
-        script: | 
-          whoami
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.NAME }}
+        password: ${{ secrets.PASSWORD }}
+        port: ${{ secrets.PORT }}
+        script: whoami
