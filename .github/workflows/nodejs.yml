@@ -18,6 +18,7 @@ jobs:
       with:
         host: 118.27.108.156
         username: okakyo
-        password: '@1phaBeta'
+        key: ${{ secrets.KEY }}
         port: 50762
-        script: whoami
+        script: | 
+          whoami
