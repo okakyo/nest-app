@@ -20,4 +20,5 @@ jobs:
         username: ${{ secrets.NAME }}
         key: ${{ secrets.KEY }}
         port: ${{ secrets.PORT }}
+        proxy_port: ${{secrets.PORT}}
         script: whoami
