@@ -16,8 +16,9 @@ jobs:
     - name: Push to server
       uses: appleboy/ssh-action@master
       with:
-        host: "118.27.108.156"
+        host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
-        key: ${{ secrets.KEY }}
+        password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
+        debug: true
         script: whoami
