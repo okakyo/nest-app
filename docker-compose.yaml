@@ -9,6 +9,7 @@ services:
       - 3000:3000
     volumes: 
       - ./src:/app/src
+      - ./schema.graphql:/app/schema.graphql
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
