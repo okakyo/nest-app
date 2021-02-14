@@ -8,7 +8,7 @@ describe('UserResolver', () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [UserResolver],
     }).compile();
-
+    
     resolver = module.get<UserResolver>(UserResolver);
   });
 
