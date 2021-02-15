@@ -10,12 +10,15 @@ services:
     volumes: 
       - ./src:/app/src
       - ./schema.graphql:/app/schema.graphql
+      - ./prisma/schema.prisma:/app/prisma/schema.prisma
+      
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USERNAME: ${MYSQL_USERNAME}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       REDIS_PORT: ${REDIS_PORT}
+      DATABASE_URL: ${DATABASE_URL}
 
     depends_on:
       - db
