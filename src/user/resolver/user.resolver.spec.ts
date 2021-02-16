@@ -3,7 +3,6 @@ import { UserResolver } from './user.resolver';
 
 describe('UserResolver', () => {
   let resolver: UserResolver;
-
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [UserResolver],

@@ -6,25 +6,27 @@ RUN apk add --no-cache python musl-dev gcc make g++ file alpine-sdk openssl && \
     pip install --upgrade pip setuptools && \
     rm -r /root/.cache
 
-
-COPY package-lock.json /app/package-lock.json
-
-COPY package.json /app/package.json
-
-
+# Create app directory
 WORKDIR /app
+
+COPY package*.json ./
+COPY prisma ./prisma/
+COPY tsconfig*.json ./
 
 RUN npm ci
 
+COPY . .
+
+RUN npm run build
+
+
 FROM node:14.2-slim
 
-WORKDIR /app
-
-COPY . /app
-
-RUN rm -rf node_modules
-
-COPY --from=build /app/node_modules /app/node_modules
+COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /app/package*.json ./
+COPY --from=build /app/tsconfig*.json ./
+COPY --from=build /app/dist ./dist
 
 
-CMD ["sh","-c","npm run build"]
+
+CMD [ "npm", "run", "start:prod" ]

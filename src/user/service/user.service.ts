@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { User } from '../models/user.model';
-
 @Injectable()
 export class UserService {
-    public async getUsers():Promise<User[]>{
+  
+    public async users():Promise<User[]>{
         
         // TODO: ここに SQL の操作を扱うコードを実装する
 
