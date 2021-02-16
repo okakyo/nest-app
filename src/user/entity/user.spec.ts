@@ -1,4 +1,4 @@
-import { User } from './user.model';
+import { User } from './user.entity';
 
 describe('User', () => {
   it('should be defined', () => {

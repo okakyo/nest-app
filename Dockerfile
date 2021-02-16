@@ -1,6 +1,6 @@
 FROM node:14.2-alpine as build
 
-RUN apk add --no-cache python musl-dev gcc make g++ file alpine-sdk openssl && \
+RUN apk add --no-cache python musl-dev gcc make g++ file alpine-sdk  && \
     python -m ensurepip && \
     rm -r /usr/lib/python*/ensurepip && \
     pip install --upgrade pip setuptools && \
@@ -10,7 +10,6 @@ RUN apk add --no-cache python musl-dev gcc make g++ file alpine-sdk openssl && \
 WORKDIR /app
 
 COPY package*.json ./
-COPY prisma ./prisma/
 COPY tsconfig*.json ./
 
 RUN npm ci

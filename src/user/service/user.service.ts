@@ -1,39 +1,35 @@
 import { Injectable } from '@nestjs/common';
-import { User } from '../models/user.model';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { User } from '../entity/user.entity';
+
+
+
 @Injectable()
 export class UserService {
-  
+    constructor(
+        @InjectRepository(User)
+        private userRepository:Repository<User>
+    ){}
     public async users():Promise<User[]>{
-        
         // TODO: ここに SQL の操作を扱うコードを実装する
 
-        return  [
-            {
-                id:"1",
-                name:"okakyo",
-                email:'0622okakyo@gmail.com'
-            },
-            {
-                id:"2",
-                name:"pinky",
-                email:"example@ymail.com"
-            }
-        ]
+        return this.userRepository.find()
     }
+
+    public async user(id:number):Promise<User>{
+        return this.userRepository.findOne(id)
+    }
+
     public async createUser():Promise<User>{
-        return {
-            id:"3",
-            name:"black",
-            email:"docks@mail.com"
-        }
+        return this.userRepository.create()
     }
     
-    public async updateUser():Promise<User>{
-        return {
-            id:"3",
-            name:"black",
-            email:"docks@mail.com"
-        }
+    public async updateUser(data:User):Promise<User>{
+        return this.userRepository.save(data)
+    }
+    public async deleteUserById(id:number){
+        return await this.userRepository.delete(id)
     }
 
 }

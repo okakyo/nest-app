@@ -3,7 +3,9 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { GraphQLModule } from '@nestjs/graphql';
 import { UserModule } from './user/user.module';
-
+import { TypeOrmModule ,TypeOrmModuleOptions} from '@nestjs/typeorm';
+import { Connection } from 'typeorm';
+import ormConfig  from './ormconfig';
 @Module({
   controllers: [AppController],
   providers: [AppService],
@@ -12,7 +14,10 @@ import { UserModule } from './user/user.module';
       playground: true,
       autoSchemaFile: 'schema.graphql'
     }),
+    TypeOrmModule.forRoot(ormConfig as TypeOrmModuleOptions),
     UserModule,
    ],
 })
-export class AppModule {}
+export class AppModule {
+  constructor(private connection: Connection) {}
+}

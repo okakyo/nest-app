@@ -18,22 +18,27 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./test/jest-e2e.json"
+    "test:e2e": "jest --config ./test/jest-e2e.json",
+    "typeorm":"ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js --config src/ormconfig.ts",
+    "typeorm:run": "npm run typeorm migration:run"
+
   },
   "dependencies": {
     "@nestjs/common": "^7.6.5",
     "@nestjs/core": "^7.0.0",
     "@nestjs/graphql": "^7.9.1",
     "@nestjs/platform-express": "^7.0.0",
-    "@prisma/client": "^2.16.1",
+    "@nestjs/typeorm": "^7.1.5",
     "apollo-server-express": "^2.19.0",
     "class-validator": "^0.13.1",
     "firebase-admin": "^9.4.2",
     "graphql": "^15.4.0",
     "graphql-tools": "^7.0.2",
+    "mysql2": "^2.2.5",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
-    "rxjs": "^6.5.4"
+    "rxjs": "^6.5.4",
+    "typeorm": "^0.2.31"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.0.0",
@@ -50,7 +55,6 @@
     "eslint-plugin-import": "^2.20.1",
     "jest": "26.4.2",
     "prettier": "^1.19.1",
-    "prisma": "^2.16.1",
     "supertest": "^4.0.2",
     "ts-jest": "26.2.0",
     "ts-loader": "^6.2.1",
