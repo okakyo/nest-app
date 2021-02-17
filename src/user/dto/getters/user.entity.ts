@@ -1,9 +1,13 @@
 import { ObjectType, Field, ID} from "@nestjs/graphql";
 import { IsEmail } from "class-validator";
-import{Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn} from "typeorm";
+import{Column, CreateDateColumn,
+       DeleteDateColumn, Entity,
+       PrimaryGeneratedColumn, 
+       UpdateDateColumn,Unique} from "typeorm";
 
 @ObjectType()
 @Entity("User")
+@Unique(['email'])
 export class User {
     @Field((type) => ID)
     @PrimaryGeneratedColumn()
@@ -17,17 +21,18 @@ export class User {
     @Column({nullable:false})
     @Field({nullable:false})
     @IsEmail()
+    
     email: string
     
-    @Field()
+    @Field({nullable:true})
     @CreateDateColumn()
     createdAt?:Date
 
-    @Field()
+    @Field({nullable:true})
     @UpdateDateColumn()
     updatedAt?:Date
 
-    @Field()
+    @Field({nullable:true})
     @DeleteDateColumn()
     deletedAt?:Date
 
