@@ -1,4 +1,4 @@
-import { User } from "./user/dto/getters/user.entity";
+import { User } from "../../user/dto/getters/user.entity";
 
  export default {
   name: 'default',

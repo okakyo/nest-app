@@ -5,7 +5,8 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { UserModule } from './user/user.module';
 import { TypeOrmModule ,TypeOrmModuleOptions} from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
-import ormConfig  from './ormconfig';
+import { TaskModule } from './task/task.module';
+import ormConfig  from './commons/config/ormconfig';
 @Module({
   controllers: [AppController],
   providers: [AppService],
@@ -16,6 +17,7 @@ import ormConfig  from './ormconfig';
     }),
     TypeOrmModule.forRoot(ormConfig as TypeOrmModuleOptions),
     UserModule,
+    TaskModule,
    ],
 })
 export class AppModule {
