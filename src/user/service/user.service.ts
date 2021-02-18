@@ -30,7 +30,7 @@ export class UserService {
         return this.userRepository.save(user);
     }
     
-    public async deleteUserById(id:number){
+    public async deleteByUserId(id:number){
         return await this.userRepository.delete(id)
     }
 

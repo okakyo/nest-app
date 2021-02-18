@@ -1,3 +1,4 @@
+import { Task } from "../../task/dto/getter/task.entity";
 import { User } from "../../user/dto/getters/user.entity";
 
  export default {
@@ -11,7 +12,7 @@ import { User } from "../../user/dto/getters/user.entity";
   synchronize: false,
   logging: true,
   entities: [
-      User
+      User,Task
   ],
   migrations: ['./src/migrations/**/*.ts'],
   cli: {
