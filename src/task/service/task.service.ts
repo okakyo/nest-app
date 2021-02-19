@@ -10,11 +10,16 @@ export class TaskService {
         private readonly taskRepository:Repository<Task>
     ){}
     public async findAllTasksByUserId(id:number){
-        return this.taskRepository.find();
+        return this.taskRepository.find({
+            where:{author:id}
+        });
     }
 
     public async findOneByTaskId(id:number){
-        return this.taskRepository.findOne(id);
+        // WARN: relations: の内容は、Entity で定義した引数(今回は'author')に依存する
+        const getTaskData = await this.taskRepository.findOne(id,{relations:['author']})
+
+        return getTaskData;
     }
 
     public async saveTask(task:Task){

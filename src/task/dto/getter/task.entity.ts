@@ -1,7 +1,7 @@
 import { ObjectType,Field } from "@nestjs/graphql";
 import { IsInt, MaxLength} from "class-validator";
 import { User } from "../../../user/dto/getters/user.entity";
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 
 @Entity()
@@ -10,6 +10,7 @@ export class Task {
 
     @PrimaryGeneratedColumn()
     @Field()
+    @IsInt()
     id?:number
 
     @Field()
@@ -24,8 +25,9 @@ export class Task {
 
     
     @ManyToOne(()=>User,user=>user.task)
-    @Field((type)=>[User])
-    author:User
+    @Field((type)=>User)
+    
+    readonly author?:User
 
     @Field()
     @Column({default:0})
@@ -34,13 +36,13 @@ export class Task {
 
     @Field()
     @CreateDateColumn()
-    createdAt:Date
+    createdAt?:Date
 
     @Field()
     @UpdateDateColumn()
-    updatedAt:Date
+    updatedAt?:Date
 
     @Field()
     @DeleteDateColumn()
-    deletedAt:Date
+    deletedAt?:Date
 }
