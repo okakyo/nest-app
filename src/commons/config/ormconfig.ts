@@ -1,5 +1,3 @@
-import { Task } from "../../entities/task/task.entity";
-import { User } from "../../entities/user/user.entity";
 
  export default {
   name: 'default',
@@ -11,7 +9,7 @@ import { User } from "../../entities/user/user.entity";
   database: process.env.MYSQL_DATABASE,
   synchronize: false,
   logging: false,
-  entities: ['dist/**/*.entity.{js,ts}'],
+  entities: ['dist/entities/**/*.entity.{js,ts}'],
   migrations: ['dist/migrations/*.{js,ts}'],
   seeds: ['dist/migrations/seeders/*.seed.{js,ts}'],
   factories: ['dist/migrations/factories/*.factory.{js,ts}'],

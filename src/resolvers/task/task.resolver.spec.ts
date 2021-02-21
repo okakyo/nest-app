@@ -1,12 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { TaskResolver } from './task.resolver';
+import {TaskService} from "../../services";
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { TaskEntity } from '../../entities';
 
 describe('TaskResolver', () => {
   let resolver: TaskResolver;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [TaskResolver],
+      providers: [TaskResolver,TaskService],
     }).compile();
 
     resolver = module.get<TaskResolver>(TaskResolver);

@@ -1,3 +1,7 @@
+ import { TaskEntity } from "../../entities";
+import { UserEntity } from "../../entities";
+
+
  export default {
   type: 'mysql',
   host: 'db',
@@ -7,11 +11,14 @@
   database: process.env.MYSQL_DATABASE,
   synchronize: false,
   logging: true,
-  entities: ['../../**/*.entity.{js,ts}'],
+  entities: [
+    TaskEntity,UserEntity
+  ],
   migrations: ['../../migrations/*.{js,ts}'],
   seeds: ['../../migrations/seeders/*.seed.{js,ts}'],
   factories: ['../../migrations/factories/*.factory.{js,ts}'],
   cli: {
+    entitiesDir: '../../entities',
     migrationsDir: '../../migrations',
     seedersDir: '../../migrations/seeds',
     factoriesDir: '../../migrations/factories',

@@ -1,5 +1,5 @@
-import { Resolver,Query,Args, Mutation,Context,Info,ID, ResolveField, Int } from '@nestjs/graphql';
-import {User} from "../../entities/user/user.entity";
+import { Resolver,Query,Args, Mutation } from '@nestjs/graphql';
+import {UserEntity} from "../../entities/user/user.entity";
 import { InputUserValue } from '../../dto/setter/user/InputUser.dto';
 import {UserService} from '../../services/user/user.service';
 
@@ -10,27 +10,27 @@ export class UserResolver {
         private UserService:UserService,
     ){}
 
-    @Query(of=>[User],{name:"users",nullable:true})
-    async users():Promise<User[]>{
+    @Query(of=>[UserEntity],{name:"users",nullable:true})
+    async users():Promise<UserEntity[]>{
         return await this.UserService.users();
     }
 
-    @Query(of=>User,{nullable:true})
+    @Query(of=>UserEntity,{nullable:true})
     async user(
         @Args('id') id:number
-    ):Promise<User>{
+    ):Promise<UserEntity>{
         return this.UserService.user(id)
     }
 
-    @Mutation(returns =>User)
+    @Mutation(returns =>UserEntity)
     async saveUser(
         @Args('user') user:InputUserValue
-    ):Promise<User>{
+    ):Promise<UserEntity>{
         const userData = await this.UserService.createUser(user)
         return userData;
     }
 
-    @Mutation((returns) =>User, { nullable: true })
+    @Mutation((returns) =>UserEntity, { nullable: true })
     async deleteUser(
         @Args('id') id:number
     ){                                                      

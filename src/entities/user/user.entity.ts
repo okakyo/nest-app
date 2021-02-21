@@ -1,6 +1,6 @@
 import { ObjectType, Field, ID} from "@nestjs/graphql";
 import { IsEmail,  IsInt,  MaxLength } from "class-validator";
-import { Task } from "../task/task.entity";
+import { TaskEntity } from "../";
 import{Column, CreateDateColumn,
        DeleteDateColumn, Entity,
        PrimaryGeneratedColumn, 
@@ -9,7 +9,7 @@ import{Column, CreateDateColumn,
 @ObjectType()
 @Entity("user")
 @Unique(['email'])
-export class User {
+export class UserEntity {
     @Field((type) => ID)
     @PrimaryGeneratedColumn()
     @IsInt()
@@ -29,9 +29,9 @@ export class User {
     @MaxLength(500)
     introduction?:string
     
-    @OneToMany(()=>Task,task=>task.author)
-    @Field((type=>[Task]),{defaultValue:[]})
-    task?:Task[]
+    @OneToMany(()=>TaskEntity,task=>task.author)
+    @Field((type=>[TaskEntity]),{defaultValue:[]})
+    task?:TaskEntity[]
 
     @Field({nullable:true})
     @CreateDateColumn()

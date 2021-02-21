@@ -1,12 +1,12 @@
 import { ObjectType,Field } from "@nestjs/graphql";
 import { IsInt, MaxLength} from "class-validator";
-import { User } from "../user/user.entity";
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { UserEntity } from "../user/user.entity";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity,  ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 
-@Entity()
+@Entity("task")
 @ObjectType()
-export class Task {
+export class TaskEntity {
 
     @PrimaryGeneratedColumn()
     @Field()
@@ -24,10 +24,10 @@ export class Task {
     description:string
     
     
-    @ManyToOne(()=>User,user=>user.task)
-    @Field((type)=>User)
+    @ManyToOne(()=>UserEntity,user=>user.task)
+    @Field((type)=>UserEntity)
     
-    readonly author?:User
+    readonly author?:UserEntity
 
     @Field()
     @Column({default:0})

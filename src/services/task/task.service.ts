@@ -1,13 +1,13 @@
 import {  Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { Task } from '../../entities/task/task.entity';
+import { TaskEntity } from '../../entities';
 
 @Injectable()
 export class TaskService {
     constructor(
-        @InjectRepository(Task)
-        private readonly taskRepository:Repository<Task>
+        @InjectRepository(TaskEntity)
+        private readonly taskRepository:Repository<TaskEntity>
     ){}
     public async findAllTasksByUserId(id:number){
         return this.taskRepository.find({
@@ -22,7 +22,7 @@ export class TaskService {
         return getTaskData;
     }
 
-    public async saveTask(task:Task){
+    public async saveTask(task:TaskEntity){
         return this.taskRepository.save(task)
     }
 

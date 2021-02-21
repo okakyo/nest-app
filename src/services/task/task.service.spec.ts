@@ -1,4 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { TaskEntity } from '../../entities';
 import { TaskService } from './task.service';
 
 describe('TaskService', () => {
