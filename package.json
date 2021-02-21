@@ -19,9 +19,14 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "typeorm:generate": "$(npm bin)/typeorm migration:generate  --config dist/commons/config/ormconfig.js -n prod",
-    "typeorm:generate-dev": "$(npm bin)/typeorm migration:generate --config dist/commons/config/ormconfig.js -n develop",
-    "typeorm:run": "$(npm bin)/typeorm migration:run --config dist/commons/config/ormconfig.js"
+    "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js --config ormconfig.local.js",
+    "typeorm:migration:generate": "npm run typeorm migration:generate -- --name develop",
+    "typeorm:migration:create": "npm run typeorm migration:create -- --name develop",
+    "typeorm:migration:run": "npm run typeorm migration:run",
+    "typeorm:migration:revert": "npm run typeorm migration:revert",
+    "typeorm:seed": "ts-node ./node_modules/typeorm-seeding/dist/cli.js --configName ormconfig.local.js",
+    "typeorm:seed:run": "npm run typeorm:seed seed",
+    "typeorm:schema:drop": "ts-node ./node_modules/typeorm/cli.js schema:drop"
   },
   "dependencies": {
     "@nestjs/common": "^7.6.5",

@@ -4,21 +4,20 @@ services:
     restart: always
     build : "./"
     container_name: "conoha-app"
-    command: "npm run start:dev"
+    command: "npm run start"
     ports:
       - 3000:3000
     volumes: 
       - ./src:/app/src
       - ./schema.graphql:/app/schema.graphql
-      
+
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
       MYSQL_USERNAME: ${MYSQL_USERNAME}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       REDIS_PORT: ${REDIS_PORT}
-      NODE_ENV: development
-    
+      NODE_ENV: production
 
     depends_on:
       - db
@@ -60,3 +59,4 @@ services:
       - 443:443
     volumes:
       - ./docker/nginx:/etc/nginx
+
