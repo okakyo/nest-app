@@ -1,8 +1,8 @@
 import { Args, Resolver,Query, Mutation } from '@nestjs/graphql';
-import { User } from '../../user/dto/getters/user.entity';
-import { Task } from '../dto/getter/task.entity';
-import { inputTask } from '../dto/setter/InputTaskForm';
-import { TaskService } from '../service/task.service';
+import { User } from '../../entities/user/user.entity';
+import { Task } from '../../entities/task/task.entity';
+import { inputTask } from '../../dto/setter/task/InputTaskForm';
+import { TaskService } from '../../services/task/task.service';
 
 @Resolver()
 export class TaskResolver {

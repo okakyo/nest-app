@@ -1,6 +1,6 @@
 import { ObjectType,Field } from "@nestjs/graphql";
 import { IsInt, MaxLength} from "class-validator";
-import { User } from "../../../user/dto/getters/user.entity";
+import { User } from "../user/user.entity";
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 

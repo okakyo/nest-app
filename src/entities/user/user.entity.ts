@@ -1,6 +1,6 @@
 import { ObjectType, Field, ID} from "@nestjs/graphql";
 import { IsEmail,  IsInt,  MaxLength } from "class-validator";
-import { Task } from "../../../task/dto/getter/task.entity";
+import { Task } from "../task/task.entity";
 import{Column, CreateDateColumn,
        DeleteDateColumn, Entity,
        PrimaryGeneratedColumn, 

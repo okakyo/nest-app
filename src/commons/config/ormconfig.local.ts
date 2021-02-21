@@ -1,5 +1,4 @@
  export default {
-  name: 'default',
   type: 'mysql',
   host: 'db',
   port: 3306,
@@ -8,14 +7,13 @@
   database: process.env.MYSQL_DATABASE,
   synchronize: false,
   logging: true,
-  entities: ['../../src/**/*.entity.{js,ts}'],
-  migrations: ['../../src/migrations/*.{js,ts}'],
-  seeds: ['../../src/migrations/seeders/*.seed.{js,ts}'],
-  factories: ['../../src/migrations/factories/*.factory.{js,ts}'],
+  entities: ['../../**/*.entity.{js,ts}'],
+  migrations: ['../../migrations/*.{js,ts}'],
+  seeds: ['../../migrations/seeders/*.seed.{js,ts}'],
+  factories: ['../../migrations/factories/*.factory.{js,ts}'],
   cli: {
-    migrationsDir: '../../src/migrations',
-    entitiesDir: '../../src/entities',
-    seedersDir: '../../src/migrations/seeds',
-    factoriesDir: '../../src/migrations/factories',
+    migrationsDir: '../../migrations',
+    seedersDir: '../../migrations/seeds',
+    factoriesDir: '../../migrations/factories',
   },
 }

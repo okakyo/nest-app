@@ -1,58 +1,6 @@
 version: "3.7"
 services: 
   api:
-    restart: always
-    build : "./"
-    container_name: "conoha-app"
     command: "npm run start:dev"
-    ports:
-      - 3000:3000
-    volumes: 
-      - ./src:/app/src
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USERNAME: ${MYSQL_USERNAME}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      REDIS_PORT: ${REDIS_PORT}
-
-    depends_on:
-      - db
-      - redis
-
-  db:
-    restart: always
-    image: "mariadb:latest"
-    container_name: mainDB
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USERNAME}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-      TZ: 'Asia/Tokyo'
-    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
-    volumes:
-      - ./docker/db/data:/var/lib/mysql
-      - ./docker/db/my.cnf:/etc/mysql/conf.d/my.cnf
-      - ./docker/db/sql:/docker-entrypoint-initdb.d
-    ports:
-      - 33063:3306
-
-  redis:
-    restart: always
-    image: redis:latest
-    volumes:
-      - ./docker/redis/data:/data
-    ports:
-      - 63790:6379
-    command: redis-server --appendonly yes
-
-  nginx:
-    restart: always
-    container_name: "nest-nginx"
-    image: "nginx:latest"
-    ports:
-      - 80:80
-      - 443:443
-    volumes:
-      - ./docker/nginx:/etc/nginx
+      NODE_ENV: "development"

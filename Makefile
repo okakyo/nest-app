@@ -1,6 +1,6 @@
 # docker-compose の立ち上げについてのコマンド一覧
 up:
-	docker-compose -f docker-compsoe.yml -f docker-compose.local.yml up
+	docker-compose -f docker-compose.yml -f docker-compose.local.yml up
 
 up-build:
 	docker-compose -f docker-compsoe.yml -f docker-compose.local.yml up --build
