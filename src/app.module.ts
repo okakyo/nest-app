@@ -7,6 +7,9 @@ import { TypeOrmModule ,TypeOrmModuleOptions} from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 import { TaskModule } from './task/task.module';
 import ormConfig  from './commons/config/ormconfig';
+import ormconfigLocal from './commons/config/ormconfig.local';
+
+const config = process.env.NODE_ENV==="develop"?ormconfigLocal:ormConfig
 @Module({
   controllers: [AppController],
   providers: [AppService],
@@ -15,7 +18,7 @@ import ormConfig  from './commons/config/ormconfig';
       playground: true,
       autoSchemaFile: 'schema.graphql'
     }),
-    TypeOrmModule.forRoot(ormConfig as TypeOrmModuleOptions),
+    TypeOrmModule.forRoot(config as TypeOrmModuleOptions),
     UserModule,
     TaskModule,
    ],

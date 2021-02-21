@@ -11,11 +11,14 @@ import { User } from "../../user/dto/getters/user.entity";
   database: process.env.MYSQL_DATABASE,
   synchronize: false,
   logging: true,
-  entities: [
-      User,Task
-  ],
-  migrations: ['./src/migrations/**/*.ts'],
+  entities: ['dist/**/*.entity.{js,ts}'],
+  migrations: ['dist/migrations/*.{js,ts}'],
+  seeds: ['dist/migrations/seeders/*.seed.{js,ts}'],
+  factories: ['dist/migrations/factories/*.factory.{js,ts}'],
   cli: {
-      migrationsDir: './src/migrations',
+    migrationsDir: 'dist/migrations',
+    entitiesDir: 'dist/entities',
+    seedersDir: 'dist/migrations/seeds',
+    factoriesDir: 'dist/migrations/factories',
   },
 }

@@ -22,7 +22,7 @@ export class Task {
     @Column({type:'text',nullable:false})
     @MaxLength(3000)
     description:string
-
+    
     
     @ManyToOne(()=>User,user=>user.task)
     @Field((type)=>User)

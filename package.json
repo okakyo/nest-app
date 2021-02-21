@@ -19,8 +19,9 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js --config src/ormconfig.ts",
-    "typeorm:run": "npm run typeorm migration:run"
+    "typeorm:generate": "$(npm bin)/typeorm migration:generate  --config dist/commons/config/ormconfig.js -n prod",
+    "typeorm:generate-dev": "$(npm bin)/typeorm migration:generate --config dist/commons/config/ormconfig.js -n develop",
+    "typeorm:run": "$(npm bin)/typeorm migration:run --config dist/commons/config/ormconfig.js"
   },
   "dependencies": {
     "@nestjs/common": "^7.6.5",
@@ -35,6 +36,7 @@
     "class-transformer": "^0.4.0",
     "class-validator": "^0.13.1",
     "cookie-parser": "^1.4.5",
+    "faker": "^5.4.0",
     "firebase-admin": "^9.4.2",
     "graphql": "^15.4.0",
     "graphql-tools": "^7.0.2",
@@ -44,7 +46,8 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.5.4",
-    "typeorm": "^0.2.31"
+    "typeorm": "^0.2.31",
+    "typeorm-seeding": "^1.6.1"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.0.0",
@@ -52,6 +55,7 @@
     "@nestjs/testing": "^7.0.0",
     "@types/bcrypt": "^3.0.0",
     "@types/express": "^4.17.3",
+    "@types/faker": "^5.1.7",
     "@types/jest": "26.0.10",
     "@types/node": "^13.9.1",
     "@types/passport": "^1.0.6",

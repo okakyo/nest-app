@@ -29,7 +29,6 @@ export class TaskResolver {
         @Args('userId') userId:number,
         @Args('task') task:inputTask
     ):Promise<Task> {
-        console.log(task)
         const author = new User()
         let setTask = new Task()
         author.id=userId;
@@ -37,7 +36,6 @@ export class TaskResolver {
             ...task,
             author
         }
-        console.log(setTask)
         return this.taskService.saveTask(setTask);
     }
 }

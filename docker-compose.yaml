@@ -17,6 +17,8 @@ services:
       MYSQL_USERNAME: ${MYSQL_USERNAME}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD}
       REDIS_PORT: ${REDIS_PORT}
+      NODE_ENV: development
+    
 
     depends_on:
       - db
