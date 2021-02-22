@@ -1,5 +1,5 @@
 
- export default {
+ export const ormConfig = {
   name: 'default',
   type: 'mysql',
   host: 'db',

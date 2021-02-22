@@ -46,7 +46,7 @@ services:
   redis:
     restart: always
     image: redis:latest
-    tty: true
+    tty: false
     volumes:
       - ./docker/redis/data:/data
     ports:
@@ -56,7 +56,7 @@ services:
   nginx:
     restart: always
     container_name: "nest-nginx"
-    tty: true
+    tty: false
     image: "nginx:latest"
     ports:
       - 80:80

@@ -1,1 +1,2 @@
-export {AppController} from "./app.controller";
+export {AppController} from "./app/app.controller";
+export {ImagesController} from "./image/images.controller";

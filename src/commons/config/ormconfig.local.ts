@@ -2,7 +2,7 @@
 import { UserEntity } from "../../entities";
 
 
- export default {
+ export const ormconfigLocal = {
   type: 'mysql',
   host: 'db',
   port: 3306,

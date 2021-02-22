@@ -3,18 +3,16 @@ import { TypeOrmModule ,TypeOrmModuleOptions} from '@nestjs/typeorm';
 import { Connection } from 'typeorm';
 import { GraphQLModule } from '@nestjs/graphql';
 
-import ormConfig  from './commons/config/ormconfig';
-import ormconfigLocal from './commons/config/ormconfig.local';
-
-import { AppController } from './controllers';
-import { AppService } from './services';
-
 import { UserModule,TaskModule } from './modules';
+import { AppService } from './services';
+import { AppController , ImagesController } from './controllers';
+
+import {ormConfig,ormconfigLocal} from './commons/config';
 
 
 const config = process.env.NODE_ENV==="development"?ormconfigLocal:ormConfig
 @Module({
-  controllers: [AppController],
+  controllers: [AppController, ImagesController],
   providers: [AppService],
   imports: [
     GraphQLModule.forRoot({

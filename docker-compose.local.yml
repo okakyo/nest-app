@@ -6,7 +6,7 @@ services:
     environment:
       NODE_ENV: "development"
   db:
-    tty: false
+    tty: false 
   redis:
     tty: false
 
