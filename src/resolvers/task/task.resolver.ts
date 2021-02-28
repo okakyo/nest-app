@@ -2,6 +2,8 @@ import { Args, Resolver,Query, Mutation } from '@nestjs/graphql';
 import { UserEntity,TaskEntity } from '../../entities';
 import { inputTask } from '../../dto/setter/task/InputTaskForm';
 import { TaskService } from '../../services';
+import { UseGuards } from '@nestjs/common';
+import { GraphqlAuthGuard } from 'src/commons/auth';
 
 @Resolver()
 export class TaskResolver {
@@ -9,13 +11,15 @@ export class TaskResolver {
         private readonly taskService:TaskService
     ){}
 
+    @UseGuards(GraphqlAuthGuard)
     @Query(of=>[TaskEntity],{name:"tasks",defaultValue:[]})
     public async tasks(
         @Args('userId') userId:number
     ):Promise<TaskEntity[]>{
         return this.taskService.findAllTasksByUserId(userId);
     };
-
+    
+    @UseGuards(GraphqlAuthGuard)
     @Query(of=>TaskEntity,{name:"task",nullable:true})
     public async task(
         @Args('taskId') taskId:number
@@ -23,6 +27,7 @@ export class TaskResolver {
         return this.taskService.findOneByTaskId(taskId);
     }
 
+    @UseGuards(GraphqlAuthGuard)
     @Mutation(returns=>TaskEntity,{nullable:false})
     public async createTask(
         @Args('userId') userId:number,

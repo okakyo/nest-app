@@ -7,7 +7,7 @@
   password: process.env.MYSQL_PASSWORD,
   database: process.env.MYSQL_DATABASE,
   synchronize: false,
-  logging: true,
+  logging: false,
   entities: [
     __dirname +"/../../../entities/**/*.entity.{js,ts}"
   ],
