@@ -1,12 +1,12 @@
 import { ObjectType,Field } from "@nestjs/graphql";
-import { IsInt, MaxLength} from "class-validator";
+import { IsIn, IsInt, MaxLength} from "class-validator";
 import { UserEntity } from "../user/user.entity";
 import { Column, CreateDateColumn, DeleteDateColumn, Entity,  ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 
-@Entity("task")
+@Entity("order")
 @ObjectType()
-export class TaskEntity {
+export class OrderEntity {
 
     @PrimaryGeneratedColumn()
     @Field()
@@ -23,11 +23,18 @@ export class TaskEntity {
     @MaxLength(3000)
     description:string
     
-    
-    @ManyToOne(()=>UserEntity,user=>user.task)
+    @ManyToOne(()=>UserEntity,user=>user.servicer)
     @Field((type)=>UserEntity)
-    
-    readonly author?:UserEntity
+    readonly servicer?:UserEntity
+
+    @ManyToOne(()=>UserEntity,user=>user.reciever)
+    @Field((type)=>UserEntity)
+    readonly receiver?:UserEntity
+
+    @Field({nullable:true})
+    @Column({default:0,nullable:false})
+    @IsInt()
+    price?:number
 
     @Field()
     @Column({default:0})

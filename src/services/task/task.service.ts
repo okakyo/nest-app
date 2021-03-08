@@ -1,28 +1,28 @@
 import {  Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { TaskEntity } from '../../entities';
+import { OrderEntity } from '../../entities';
 
 @Injectable()
 export class TaskService {
     constructor(
-        @InjectRepository(TaskEntity)
-        private readonly taskRepository:Repository<TaskEntity>
+        @InjectRepository(OrderEntity)
+        private readonly taskRepository:Repository<OrderEntity>
     ){}
-    public async findAllTasksByUserId(id:number){
+    public async findAllTasksByUserId(userId:string){
         return this.taskRepository.find({
-            where:{author:id}
+            where:{servicer:userId}
         });
     }
 
     public async findOneByTaskId(id:number){
         // WARN: relations: の内容は、Entity で定義した引数(今回は'author')に依存する
-        const getTaskData = await this.taskRepository.findOne(id,{relations:['author']})
+        const getTaskData = await this.taskRepository.findOne(id,{relations:['servicer']})
 
         return getTaskData;
     }
 
-    public async saveTask(task:TaskEntity){
+    public async saveTask(task:OrderEntity){
         return this.taskRepository.save(task)
     }
 

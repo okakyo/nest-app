@@ -4,6 +4,7 @@
 
 type UserEntity {
   id: ID!
+  userId: String!
   name: String!
   email: String!
   introduction: String
@@ -31,13 +32,14 @@ type TaskEntity {
 
 type Query {
   users: [UserEntity!]
-  user(id: Float!): UserEntity
+  user(email: String!): UserEntity
   tasks(userId: Float!): [TaskEntity!]!
   task(taskId: Float!): TaskEntity
 }
 
 type Mutation {
   saveUser(user: InputUserValue!): UserEntity!
+  updateUser(user: InputUserValue!): UserEntity!
   deleteUser(id: Float!): UserEntity
   createTask(task: inputTask!, userId: Float!): TaskEntity!
 }
@@ -46,7 +48,8 @@ input InputUserValue {
   id: Float
   name: String!
   email: String!
-  introduction: String!
+  userId: String
+  introduction: String
 }
 
 input inputTask {

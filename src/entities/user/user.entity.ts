@@ -1,37 +1,42 @@
-import { ObjectType, Field, ID} from "@nestjs/graphql";
-import { IsEmail,  IsInt,  MaxLength } from "class-validator";
-import { TaskEntity } from "../";
+import { ObjectType, Field} from "@nestjs/graphql";
+import { OrderEntity} from "../";
 import{Column, CreateDateColumn,
        DeleteDateColumn, Entity,
-       PrimaryGeneratedColumn, 
-       UpdateDateColumn,Unique, OneToMany} from "typeorm";
+       UpdateDateColumn, OneToMany, OneToOne, JoinColumn} from "typeorm";
+dispatchEvent
+import { UserDetailEntity } from "../userDetail/userDetail.entity";
 
 @ObjectType()
 @Entity("user")
-@Unique(['email'])
 export class UserEntity {
-    @Field((type) => ID)
-    @PrimaryGeneratedColumn()
-    @IsInt()
-    id:number;
+
+    @Field({nullable:false})
+    @Column({nullable:false})
+    id:string
 
     @Field({nullable:false})
     @Column({nullable:false})
     name: string;
 
-    @Column({nullable:false})
-    @Field({nullable:false})
-    @IsEmail()
-    email: string
-
-    @Column({type:'text',nullable:true})
     @Field({nullable:true})
-    @MaxLength(500)
-    introduction?:string
-    
-    @OneToMany(()=>TaskEntity,task=>task.author)
-    @Field((type=>[TaskEntity]),{defaultValue:[]})
-    task?:TaskEntity[]
+    @Column({nullable:true})
+    thumbnail?:string
+
+    @Field({nullable:true})
+    @Column({nullable:false,default:0})
+    type?:number
+
+    @OneToMany(()=>OrderEntity,order=>order.servicer,{cascade:true})
+    @Field((type=>[OrderEntity]),{defaultValue:[]})
+    servicer?:OrderEntity[]
+
+    @OneToMany(()=>OrderEntity,order =>order.receiver,{cascade:true})
+    @Field(type=>[OrderEntity],{defaultValue:[]})
+    reciever?:OrderEntity[]
+
+    @OneToOne(()=>UserDetailEntity,user=>user.userId,{cascade:true})
+    @JoinColumn()
+    detail?:UserDetailEntity
 
     @Field({nullable:true})
     @CreateDateColumn()

@@ -1,5 +1,5 @@
 import { Args, Resolver,Query, Mutation } from '@nestjs/graphql';
-import { UserEntity,TaskEntity } from '../../entities';
+import { UserEntity,OrderEntity } from '../../entities';
 import { inputTask } from '../../dto/setter/task/InputTaskForm';
 import { TaskService } from '../../services';
 import { UseGuards } from '@nestjs/common';
@@ -12,33 +12,33 @@ export class TaskResolver {
     ){}
 
     @UseGuards(GraphqlAuthGuard)
-    @Query(of=>[TaskEntity],{name:"tasks",defaultValue:[]})
+    @Query(of=>[OrderEntity],{name:"tasks",defaultValue:[]})
     public async tasks(
-        @Args('userId') userId:number
-    ):Promise<TaskEntity[]>{
+        @Args('userId') userId:string
+    ):Promise<OrderEntity[]>{
         return this.taskService.findAllTasksByUserId(userId);
     };
     
     @UseGuards(GraphqlAuthGuard)
-    @Query(of=>TaskEntity,{name:"task",nullable:true})
+    @Query(of=>OrderEntity,{name:"task",nullable:true})
     public async task(
         @Args('taskId') taskId:number
-    ):Promise<TaskEntity>{
+    ):Promise<OrderEntity>{
         return this.taskService.findOneByTaskId(taskId);
     }
 
     @UseGuards(GraphqlAuthGuard)
-    @Mutation(returns=>TaskEntity,{nullable:false})
+    @Mutation(returns=>OrderEntity,{nullable:false})
     public async createTask(
-        @Args('userId') userId:number,
+        @Args('userId') userId:string,
         @Args('task') task:inputTask
-    ):Promise<TaskEntity> {
+    ):Promise<OrderEntity> {
         const author = new UserEntity()
-        let setTask = new TaskEntity()
+        let setTask = new OrderEntity()
         author.id=userId;
         setTask = {
             ...task,
-            author
+            servicer:author
         }
         return this.taskService.saveTask(setTask);
     }
