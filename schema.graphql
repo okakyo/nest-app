@@ -2,13 +2,21 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type UserEntity {
+type SNSEntity {
+  id: String
+  snsId: String!
+  snsName: String!
+  userId: UserDetailEntity!
+}
+
+type UserDetailEntity {
   id: ID!
   userId: String!
-  name: String!
   email: String!
+  password: String
+  phone: String!
+  sns: [SNSEntity!]
   introduction: String
-  task: [TaskEntity!]!
   createdAt: DateTime
   updatedAt: DateTime
   deletedAt: DateTime
@@ -19,11 +27,25 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
-type TaskEntity {
+type UserEntity {
+  id: String!
+  name: String!
+  thumbnail: String
+  type: Float
+  servicer: [OrderEntity!]!
+  reciever: [OrderEntity!]!
+  createdAt: DateTime
+  updatedAt: DateTime
+  deletedAt: DateTime
+}
+
+type OrderEntity {
   id: Float!
   title: String!
   description: String!
-  author: UserEntity!
+  servicer: UserEntity!
+  receiver: UserEntity!
+  price: Float
   state: Float!
   createdAt: DateTime!
   updatedAt: DateTime!
@@ -33,23 +55,33 @@ type TaskEntity {
 type Query {
   users: [UserEntity!]
   user(email: String!): UserEntity
-  tasks(userId: Float!): [TaskEntity!]!
-  task(taskId: Float!): TaskEntity
+  tasks(userId: String!): [OrderEntity!]!
+  task(taskId: Float!): OrderEntity
 }
 
 type Mutation {
-  saveUser(user: InputUserValue!): UserEntity!
-  updateUser(user: InputUserValue!): UserEntity!
-  deleteUser(id: Float!): UserEntity
-  createTask(task: inputTask!, userId: Float!): TaskEntity!
+  createUser(user: CreateUserDto!): UserEntity!
+  updateUser(user: UpdateUserDto!): UserEntity!
+  deleteUser(id: String!): UserEntity
+  createTask(task: inputTask!, userId: String!): OrderEntity!
 }
 
-input InputUserValue {
-  id: Float
+input CreateUserDto {
+  id: String!
   name: String!
+  thumbnail: String!
   email: String!
-  userId: String
   introduction: String
+  phone: String
+}
+
+input UpdateUserDto {
+  id: String!
+  name: String!
+  thumbnail: String!
+  email: String!
+  introduction: String
+  phone: String
 }
 
 input inputTask {

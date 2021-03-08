@@ -19,8 +19,8 @@ export class SNSEntity {
     snsName:string
 
     @ManyToOne(()=>UserDetailEntity,user=>user.sns)
-    @Field({nullable:false})
-    userId:string
+    @Field(type=>UserDetailEntity,{nullable:false})
+    userId:UserDetailEntity
 
 
 

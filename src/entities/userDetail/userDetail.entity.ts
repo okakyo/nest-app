@@ -33,9 +33,9 @@ export class UserDetailEntity {
     @IsPhoneNumber()
     phone:string
 
-    @Column({nullable:true,default:[]})
-    @Field({nullable:true})
-    sns:SNSEntity[]
+    @OneToMany(()=>SNSEntity,sns=>sns.userId,{cascade:true})
+    @Field(type=>[SNSEntity],{nullable:true})
+    sns?:SNSEntity[]
 
     @Column({type:'text',nullable:true})
     @Field({nullable:true})

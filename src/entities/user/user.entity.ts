@@ -1,9 +1,8 @@
 import { ObjectType, Field} from "@nestjs/graphql";
 import { OrderEntity} from "../";
-import{Column, CreateDateColumn,
+import{Column, CreateDateColumn,PrimaryColumn,
        DeleteDateColumn, Entity,
        UpdateDateColumn, OneToMany, OneToOne, JoinColumn} from "typeorm";
-dispatchEvent
 import { UserDetailEntity } from "../userDetail/userDetail.entity";
 
 @ObjectType()
@@ -11,7 +10,7 @@ import { UserDetailEntity } from "../userDetail/userDetail.entity";
 export class UserEntity {
 
     @Field({nullable:false})
-    @Column({nullable:false})
+    @PrimaryColumn({nullable:false})
     id:string
 
     @Field({nullable:false})
