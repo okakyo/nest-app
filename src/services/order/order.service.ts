@@ -4,7 +4,7 @@ import { Repository } from 'typeorm';
 import { OrderEntity } from '../../entities';
 
 @Injectable()
-export class TaskService {
+export class OrderService {
     constructor(
         @InjectRepository(OrderEntity)
         private readonly taskRepository:Repository<OrderEntity>
@@ -17,7 +17,7 @@ export class TaskService {
 
     public async findOneByTaskId(id:number){
         // WARN: relations: の内容は、Entity で定義した引数(今回は'author')に依存する
-        const getTaskData = await this.taskRepository.findOne(id,{relations:['servicer']})
+        const getTaskData = await this.taskRepository.findOne(id,{relations:['servicer','reciever']})
 
         return getTaskData;
     }

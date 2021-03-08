@@ -1,2 +1,2 @@
 export {UserResolver} from "./user/user.resolver";
-export {TaskResolver} from "./task/task.resolver";
+export {OrderResolver} from "./order/order.resolver";

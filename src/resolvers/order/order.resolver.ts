@@ -1,14 +1,14 @@
 import { Args, Resolver,Query, Mutation } from '@nestjs/graphql';
 import { UserEntity,OrderEntity } from '../../entities';
 import { inputTask } from '../../dto/setter/task/InputTaskForm';
-import { TaskService } from '../../services';
+import { OrderService } from '../../services';
 import { UseGuards } from '@nestjs/common';
 import { GraphqlAuthGuard } from 'src/commons/auth';
 
 @Resolver()
-export class TaskResolver {
+export class OrderResolver {
     constructor(
-        private readonly taskService:TaskService
+        private readonly taskService:OrderService
     ){}
 
     @UseGuards(GraphqlAuthGuard)

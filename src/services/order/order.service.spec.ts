@@ -1,17 +1,17 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken, TypeOrmModule } from '@nestjs/typeorm';
-import { TaskEntity } from '../../entities';
-import { TaskService } from './task.service';
+import { OrderEntity } from '../../entities';
+import { OrderService } from './order.service';
 
-describe('TaskService', () => {
-  let service: TaskService;
+describe('OrderService', () => {
+  let service: OrderService;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-        TaskService,
+        OrderService,
          {
-          provide: getRepositoryToken(TaskEntity),
+          provide: getRepositoryToken(OrderEntity),
           useValue: {
             save: jest.fn()
           },
@@ -19,7 +19,7 @@ describe('TaskService', () => {
       ],
     }).compile();
 
-    service = module.get<TaskService>(TaskService);
+    service = module.get<OrderService>(OrderService);
   });
 
   it('should be defined', () => {

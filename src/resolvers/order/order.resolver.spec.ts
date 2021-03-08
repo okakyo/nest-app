@@ -1,25 +1,25 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { TaskResolver } from './task.resolver';
-import {TaskService} from "../../services";
+import { OrderResolver } from './order.resolver';
+import {OrderService} from "../../services";
 import { getRepositoryToken, TypeOrmModule } from '@nestjs/typeorm';
-import { TaskEntity } from '../../entities';
+import { OrderEntity } from '../../entities';
 
 describe('TaskResolver', () => {
-  let resolver: TaskResolver;
+  let resolver: OrderResolver;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       providers: [
-        TaskResolver,
-        TaskService,
+        OrderResolver,
+        OrderService,
         {
-          provide: getRepositoryToken(TaskEntity),
+          provide: getRepositoryToken(OrderEntity),
           useValue:{}
         }
       ],
     }).compile();
 
-    resolver = module.get<TaskResolver>(TaskResolver);
+    resolver = module.get<OrderResolver>(OrderResolver);
   });
 
   it('should be defined', () => {

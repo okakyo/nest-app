@@ -1,2 +1,2 @@
-export {TaskModule} from "./task.module";
+export {TaskModule} from "./order.module";
 export {UserModule} from "./user.module";

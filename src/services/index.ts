@@ -1,3 +1,3 @@
 export {AppService} from "./app.service";
-export {TaskService} from "./task/task.service"
+export {OrderService} from "./order/order.service"
 export {UserService} from "./user/user.service"
