@@ -1,6 +1,9 @@
-import { Controller } from '@nestjs/common';
+import { Resolver,Query, Args } from '@nestjs/graphql';
 
-@Controller('user')
+@Resolver('user')
 export class UserResolver {
-    
+    //@Query(type=>User)
+    async function findUserById(@Args(id) id:number) {
+        
+    }
 }
