@@ -1,0 +1,23 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type UserDetailEntity {
+  id: Int!
+  email: String!
+  fullName: String!
+  phone: String!
+  bio: String!
+}
+
+type UserEntity {
+  id: Int!
+  name: String!
+  type: Int!
+  introduction: UserDetailEntity!
+}
+
+type Query {
+  user(id: Float!): UserEntity
+  users: [UserEntity!]!
+}

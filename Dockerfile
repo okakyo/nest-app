@@ -16,7 +16,9 @@ COPY prisma ./prisma/
 
 RUN npm ci
 
-RUN npx prisma generate && npm run build
+RUN npx prisma generate && \
+    npm run prebuild &&\
+    npm run build
 
 FROM node:14.2-alpine as production
 

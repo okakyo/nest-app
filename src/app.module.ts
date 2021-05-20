@@ -5,7 +5,7 @@ import {GraphQLModule} from "@nestjs/graphql";
 import { UserModule } from './user/user.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { ArticleModule } from './article/article.module';
-import { Article } from './article/article';
+import { join } from 'path';
 @Module({
   imports: [
     UserModule,
@@ -13,11 +13,11 @@ import { Article } from './article/article';
     GraphQLModule.forRoot({
       debug: process.env.NODE_ENV !== 'production',
       playground: process.env.NODE_ENV !== 'production',
-      autoSchemaFile: true 
+      autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
     }),
     ArticleModule
   ],
   controllers: [AppController],
-  providers: [AppService, Article],
+  providers: [AppService],
 })
 export class AppModule {}

@@ -6,7 +6,14 @@ export class UserService {
     constructor(private prisma:PrismaService){}
     async findOneUser(where:Prisma.UserWhereUniqueInput):Promise<User|null>{
         return this.prisma.user.findUnique({
-            where: where
+            where: where, 
+            include:{
+                introduction:{
+                    include:{
+                        sns:true
+                    }
+                }
+            }
         })
     }
 

@@ -1,4 +1,5 @@
 import {Field, ObjectType,Int} from "@nestjs/graphql";
+import { UserDetailEntity } from "./userDetail.dto";
 
 @ObjectType()
 export class UserEntity {
@@ -11,9 +12,8 @@ export class UserEntity {
     @Field(type=>Int)
     type: Number
 
-    @Field()
-    introduction: 
-
+    @Field(type =>UserDetailEntity)
+    introduction?:UserDetailEntity
 
 }
 

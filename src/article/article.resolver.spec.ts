@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ArticleResolver } from './article.controller';
+import { ArticleResolver } from './article.resolver';
 
 describe('ArticleResolver', () => {
   let resolver: ArticleResolver;
