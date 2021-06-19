@@ -11,13 +11,75 @@ type UserDetailEntity {
 }
 
 type UserEntity {
-  id: Int!
+  id: String!
+  userId: String!
   name: String!
   type: Int!
-  introduction: UserDetailEntity!
+  thumbnail: String
+  introduction: UserDetailEntity
+}
+
+type ArticleEntity {
+  id: String!
+  title: String!
+  isPublished: Boolean!
+  content: String!
+  authorId: String!
 }
 
 type Query {
-  user(id: Float!): UserEntity
-  users: [UserEntity!]!
+  user(id: String!): UserEntity
+  users(option: FindAllUserArgs): [UserEntity!]!
+  articles(userId: String!): [ArticleEntity!]!
+  article(id: String!): ArticleEntity
+}
+
+input FindAllUserArgs {
+  skip: Float
+  take: Float
+}
+
+type Mutation {
+  createUser(data: CreateUserInput!): UserEntity!
+  updateUser(data: UpdateUserInput!): UserEntity!
+  deleteUser(id: String!): UserEntity!
+  createArticle(data: CreateArticleInput!): ArticleEntity
+  updateArticle(data: UpdateArticleInput!): ArticleEntity
+  deleteArticle(id: String!): ArticleEntity
+}
+
+input CreateUserInput {
+  name: String!
+  type: Int
+  fullName: String
+  phone: String
+  email: String!
+  introduction: String
+}
+
+input UpdateUserInput {
+  id: String!
+  name: String
+  userId: String
+  type: Int
+  fullName: String
+  phone: String
+  email: String
+  introduction: String
+}
+
+input CreateArticleInput {
+  title: String!
+  authorId: String!
+  isPublished: Boolean
+  description: String
+  content: String!
+}
+
+input UpdateArticleInput {
+  id: Int
+  title: String
+  authorId: String
+  isPublished: Boolean
+  content: String
 }

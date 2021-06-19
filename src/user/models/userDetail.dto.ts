@@ -1,6 +1,7 @@
 import { Field, Int, ObjectType } from "@nestjs/graphql";
 
 @ObjectType()
+
 export class UserDetailEntity { 
     @Field(type=>Int)
     readonly id: number

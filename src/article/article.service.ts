@@ -6,9 +6,13 @@ import {Prisma,Article} from "@prisma/client"
 export class ArticleService {
 
     constructor(private prisma:PrismaService){}
-    async findAllArticlesByUserId(where:Prisma.ArticleWhereUniqueInput):Promise<Article[]>{
+
+    
+    async findAllArticlesByUserId(userId:string):Promise<Article[]>{
         return this.prisma.article.findMany({
-            where:where
+            where:{
+                authorId:userId
+            }
         });
     }
 
@@ -22,7 +26,9 @@ export class ArticleService {
     }
 
     async createArticle(data:Prisma.ArticleCreateInput):Promise<Article>{
-        return this.prisma.article.create({data});
+        return this.prisma.article.create({
+            data
+        });
     }
     async updateArticle(params: {
         where: Prisma.ArticleWhereUniqueInput;

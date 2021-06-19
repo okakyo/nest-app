@@ -5,11 +5,13 @@ const prisma = new PrismaClient()
 export const main = async ()=>{
     const user = await prisma.user.upsert({
         where:{
-            id:1
+           id:"sample-1"
         },
         update:{},
         create:{
+            id:"sample-1",
             name:"user1",
+            userId:"test-user",
             type:0,
             introduction:{
                 create:{
@@ -22,17 +24,20 @@ export const main = async ()=>{
                 create:[
                     {
                         title:"サンプル１",
-                        isPublshed:true,
+                        isPublished:true,
+                        description:"sample text 1",
                         content:"これはサンプルで用意した記事です。"
                     },
                     {
                         title:"サンプル２",
-                        isPublshed:true,
+                        isPublished:true,
+                        description:"sample text 2",
                         content:"これはサンプルで用意した記事です。"
                     },
                     {
                         title:"サンプル３",
-                        isPublshed:false,
+                        isPublished:false,
+                        description:"sample text 3",
                         content:"これはサンプルで用意した記事です。"
                     },
                 ]

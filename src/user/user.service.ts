@@ -21,16 +21,15 @@ export class UserService {
                 skip?: number;
                 take?: number;
                 cursor?: Prisma.UserWhereUniqueInput;
-                where?: Prisma.UserWhereInput;
-                orderBy?: Prisma.UserOrderByInput;
+               
         }):Promise<User[]>{
-            const {skip,take,cursor,where,orderBy} = params;
+            const {skip,take,cursor} = params;
             return this.prisma.user.findMany({
-                skip,take,cursor,where,orderBy
+                skip,take,cursor
             })
     }
 
-    async createUser(data:Prisma.UserCreateInput):Promise<User>{
+    async createUser(data:Prisma.UserCreateInput):Promise<User|null>{
         return this.prisma.user.create({
             data
         })
