@@ -9,14 +9,14 @@ export class UserDetailEntity {
     @Field()
     email :string 
 
-    @Field()
+    @Field({nullable:true})
     fullName?: string 
 
-    @Field()
+    @Field({nullable:true})
     phone?:string 
 
-    @Field()
-    bio :string 
+    @Field({nullable:true})
+    bio? :string 
 
 
 }

@@ -32,10 +32,8 @@ export class UserResolver {
     async createUser(@Args("data") data:CreateUserInput):Promise<User|null>{
         const {name,type,email,fullName,introduction} = data;
 
-        // TODO: UserID を自動で生成するように設定する
         return await this.userService.createUser({
             name:name,
-            userId:"todo",
             type:type,
             introduction:{
                 create:{
@@ -57,7 +55,6 @@ export class UserResolver {
             },
             data:{
                 name:name,
-                userId:"todo",
                 type:type,
                 introduction:{
                     update:{

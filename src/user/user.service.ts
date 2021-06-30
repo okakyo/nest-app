@@ -31,7 +31,14 @@ export class UserService {
 
     async createUser(data:Prisma.UserCreateInput):Promise<User|null>{
         return this.prisma.user.create({
-            data
+            data,
+            include:{
+                introduction:{
+                    include:{
+                        sns:true
+                    }
+                }
+            }
         })
     }
 
@@ -42,7 +49,14 @@ export class UserService {
         const {where, data }  = params;
         return this.prisma.user.update({
             data,
-            where
+            where,
+            include:{
+                introduction:{
+                    include:{
+                        sns:true
+                    }
+                }
+            }
         });
     }
 

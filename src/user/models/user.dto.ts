@@ -7,9 +7,6 @@ export class UserEntity {
     readonly id:string
 
     @Field()
-    userId:String
-
-    @Field()
     name:String
 
     @Field(type=>Int)

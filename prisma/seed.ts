@@ -11,7 +11,6 @@ export const main = async ()=>{
         create:{
             id:"sample-1",
             name:"user1",
-            userId:"test-user",
             type:0,
             introduction:{
                 create:{
@@ -44,8 +43,6 @@ export const main = async ()=>{
             }
         }
     })
-
-    console.log(user)
 }
 
 main()

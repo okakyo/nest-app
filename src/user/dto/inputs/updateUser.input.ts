@@ -11,9 +11,6 @@ export class UpdateUserInput {
     @Field({nullable:true})
     name?: string;
 
-    @Field({nullable:true})
-    userId: string;
-
     @Field(type=>Int,{nullable:true})
     @IsInt()
     type?:number;

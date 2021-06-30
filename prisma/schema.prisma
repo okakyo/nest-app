@@ -12,14 +12,13 @@ generator client {
 
 model User {
   id String  @id @default(cuid())
-  userId String
   name String 
   type Int? @default(0)
   thumbnail String?
   introduction Introduction?
   articles Article[]
-  @@unique([userId,id])
-  @@index([userId])
+  @@unique([id])
+  @@index([id])
 }
 
 model Article {
