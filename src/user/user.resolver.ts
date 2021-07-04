@@ -6,7 +6,6 @@ import { CreateUserInput } from './dto/inputs/createUser.input';
 import { UpdateUserInput } from './dto/inputs/updateUser.input';
 import { FindAllUserArgs } from './dto/args/findAllUser.dto';
 
-
 @Resolver('user')
 export class UserResolver {
 
