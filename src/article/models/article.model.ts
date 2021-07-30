@@ -1,4 +1,4 @@
-import { Field, Int, ObjectType } from "@nestjs/graphql";
+import { Field,  ObjectType } from "@nestjs/graphql";
 
 @ObjectType()
 export class ArticleEntity {
@@ -8,7 +8,13 @@ export class ArticleEntity {
     @Field()
     title: string; 
 
-    @Field()
+    @Field({nullable:true})
+    thumbnail?:string;
+
+    @Field({nullable:true})
+    description?: string;
+
+    @Field({nullable:true})
     isPublished?: boolean
 
     @Field()

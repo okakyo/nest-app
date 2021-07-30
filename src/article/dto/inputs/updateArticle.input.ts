@@ -19,6 +19,8 @@ export class UpdateArticleInput{
     @IsBoolean()
     isPublished?:boolean
 
+    @Field({nullable:true})
+    thumbnail?:string
 
     @Field({nullable:true})
     @Length(300)

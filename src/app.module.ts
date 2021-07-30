@@ -6,6 +6,7 @@ import { UserModule } from './user/user.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { ArticleModule } from './article/article.module';
 import { join } from 'path';
+import { ApiModule } from './api/api.module';
 @Module({
   imports: [
     UserModule,
@@ -15,7 +16,8 @@ import { join } from 'path';
       playground: process.env.NODE_ENV !== 'production',
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
     }),
-    ArticleModule
+    ArticleModule,
+    ApiModule
   ],
   controllers: [AppController],
   providers: [AppService],

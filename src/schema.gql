@@ -21,7 +21,9 @@ type UserEntity {
 type ArticleEntity {
   id: String!
   title: String!
-  isPublished: Boolean!
+  thumbnail: String
+  description: String
+  isPublished: Boolean
   content: String!
   authorId: String!
 }
@@ -70,6 +72,7 @@ input CreateArticleInput {
   title: String!
   authorId: String!
   isPublished: Boolean
+  thumbnail: String
   description: String
   content: String!
 }
@@ -79,5 +82,6 @@ input UpdateArticleInput {
   title: String
   authorId: String
   isPublished: Boolean
+  thumbnail: String
   content: String
 }

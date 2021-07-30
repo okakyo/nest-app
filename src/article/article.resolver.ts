@@ -20,9 +20,10 @@ export class ArticleResolver {
 
     @Mutation(()=>ArticleEntity,{nullable:true})
     async createArticle(@Args("data") data:CreateArticleInput){
-        const {title,isPublished,content,authorId,description} =data;
+        const {title,isPublished,content,authorId,description,thumbnail} =data;
         return this.articleService.createArticle({
             title,
+            thumbnail,
             isPublished,
             content,
             description,
@@ -37,13 +38,14 @@ export class ArticleResolver {
     @Mutation(()=>ArticleEntity,{nullable:true})
     async updateArticle(@Args("data") data:UpdateArticleInput){
 
-        const {id,title,isPublished,content,authorId} =data;
+        const {id,title,isPublished,content,authorId,thumbnail} =data;
         return this.articleService.updateArticle({
             where:{
                 id
             },
             data:{
                 title,
+                thumbnail,
                 isPublished,
                 content,
                 author:{

@@ -15,6 +15,8 @@ export class CreateArticleInput{
     @IsBoolean()
     isPublished?:boolean
 
+    @Field({nullable:true})
+    thumbnail?:string
 
     @Field({nullable:true})
     description:string
